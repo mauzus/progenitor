@@ -555,3 +555,36 @@ void MainEmuFrame::Menu_ShowAboutBox(wxCommandEvent &event)
 {
 	AppOpenDialog<AboutBoxDialog>( this );
 }
+
+//TAS 
+void MainEmuFrame::Menu_ShowRecoed_Movie(wxCommandEvent &event)
+{
+	AppOpenDialog<PlayMovieDialog>( this );
+}
+
+void MainEmuFrame::Menu_ShowPlay_Movie(wxCommandEvent &event)
+{
+	AppOpenDialog<AboutBoxDialog>( this );
+}
+
+void MainEmuFrame::Menu_Stopmovie_Click(wxCommandEvent &event)
+{
+	AppOpenDialog<AboutBoxDialog>( this );
+}
+
+bool MainEmuFrame::_DoSelectP2MBrowser()
+{
+	static const wxChar* p2mFilterType = L"PS2 MOVIE Files (.p2m)|*.p2m;*.P2M";
+
+	wxFileDialog ctrl( this, _("Select P2M file..."), g_Conf->Folders.RunP2M.ToString(), wxEmptyString,
+		(wxString)p2mFilterType + L"|" + _("All Files (*.*)") + L"|*.*", wxFD_OPEN | wxFD_FILE_MUST_EXIST );
+
+	if( ctrl.ShowModal() != wxID_CANCEL )
+	{
+		g_Conf->Folders.RunP2M = wxFileName( ctrl.GetPath() ).GetPath();
+		g_Conf->CurrentP2M = ctrl.GetPath();
+		return true;
+	}
+
+	return false;
+}

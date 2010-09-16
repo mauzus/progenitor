@@ -158,6 +158,23 @@ namespace Dialogs
 	protected:
 		void OnThreadCleanup();
 	};
+
+	//TAS
+	class PlayMovieDialog: public wxDialogWithHelpers
+	{
+	protected:
+		//wxStaticBitmap m_bitmap_logo;
+		//wxStaticBitmap m_bitmap_dualshock;
+
+	public:
+		PlayMovieDialog( wxWindow* parent=NULL );
+		virtual ~PlayMovieDialog() throw() {}
+
+		static wxString GetNameStatic() { return L"AboutBox"; }
+		wxString GetDialogName() const { return GetNameStatic(); }
+	};
+	//
+
 }
 
 wxWindowID pxIssueConfirmation( wxDialogWithHelpers& confirmDlg, const MsgButtons& buttons );

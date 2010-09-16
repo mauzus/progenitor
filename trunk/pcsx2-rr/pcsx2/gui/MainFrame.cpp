@@ -200,6 +200,12 @@ void MainEmuFrame::ConnectMenus()
 	ConnectMenu( MenuId_Console_Stdio,		Menu_ShowConsole_Stdio );
 	ConnectMenu( MenuId_CDVD_Info,			Menu_PrintCDVD_Info );
 
+	//TAS
+	ConnectMenu( MenuId_Record_Movie,		Menu_ShowRecoed_Movie );
+	ConnectMenu( MenuId_Play_Movie,			Menu_ShowPlay_Movie );
+	ConnectMenu( MenuId_Stop_Movie,			Menu_Stopmovie_Click );
+	//
+
 	ConnectMenu( MenuId_About,				Menu_ShowAboutBox );
 }
 
@@ -285,6 +291,7 @@ MainEmuFrame::MainEmuFrame(wxWindow* parent, const wxString& title)
 	, m_menuConfig	( *new wxMenu() )
 	, m_menuMisc	( *new wxMenu() )
 	, m_menuDebug	( *new wxMenu() )
+	, m_menuMovie	( *new wxMenu() ) //TAS
 
 	, m_LoadStatesSubmenu( *MakeStatesSubMenu( MenuId_State_Load01 ) )
 	, m_SaveStatesSubmenu( *MakeStatesSubMenu( MenuId_State_Save01 ) )
@@ -307,6 +314,7 @@ MainEmuFrame::MainEmuFrame(wxWindow* parent, const wxString& title)
 	m_menubar.Append( &m_menuCDVD,		_("CD&VD") );
 	m_menubar.Append( &m_menuConfig,	_("&Config") );
 	m_menubar.Append( &m_menuMisc,		_("&Misc") );
+	m_menubar.Append( &m_menuMovie,		_("&Movie") );
 #ifdef PCSX2_DEVBUILD
 	m_menubar.Append( &m_menuDebug,		_("&Debug") );
 #endif
@@ -445,6 +453,7 @@ MainEmuFrame::MainEmuFrame(wxWindow* parent, const wxString& title)
 	// ------------------------------------------------------------------------
 
 	m_menuMisc.Append( &m_MenuItem_Console );
+
 #ifdef __LINUX__
 	m_menuMisc.Append( &m_MenuItem_Console_Stdio );
 #endif
@@ -464,6 +473,12 @@ MainEmuFrame::MainEmuFrame(wxWindow* parent, const wxString& title)
 	//m_menuMisc.Append(MenuId_Website,			_("Visit Website..."),
 	//	_("Opens your web-browser to our favorite website."));
 	m_menuMisc.Append(MenuId_About,				_("About...") );
+
+	//TAS
+	m_menuMovie.Append(MenuId_Record_Movie,	_("Record Movie"));
+	m_menuMovie.Append(MenuId_Play_Movie,	_("Play Movie"));
+	m_menuMovie.Append(MenuId_Stop_Movie,	_("Stop Movie"));
+	//
 #ifdef PCSX2_DEVBUILD
 	m_menuDebug.Append(MenuId_Debug_Open,		_("Open Debug Window..."),	wxEmptyString);
 	m_menuDebug.Append(MenuId_Debug_MemoryDump,	_("Memory Dump..."),		wxEmptyString);

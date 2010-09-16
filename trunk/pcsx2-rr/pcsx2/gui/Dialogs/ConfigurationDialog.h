@@ -198,4 +198,6 @@ namespace Dialogs
 		void CreateControls();
 		void OnOk_Click( wxCommandEvent& evt );
 	};
+
+
 }
