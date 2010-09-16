@@ -146,6 +146,12 @@ enum MenuIdentifiers
 	MenuId_Debug_MemoryDump,
 	MenuId_Debug_Logging,		// dialog for selection additional log options
 	MenuId_Config_ResetAll,
+
+	//TAS
+	MenuId_Record_Movie,
+	MenuId_Play_Movie,	
+	MenuId_Stop_Movie,	
+
 };
 
 namespace Exception

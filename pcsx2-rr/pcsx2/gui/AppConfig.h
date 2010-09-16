@@ -112,6 +112,7 @@ public:
 
 		wxDirName RunIso;		// last used location for Iso loading.
 		wxDirName RunELF;		// last used location for ELF loading.
+		wxDirName RunP2M;		// TAS
 
 		FolderOptions();
 		void LoadSave( IniInterface& conf );
@@ -227,6 +228,7 @@ public:
 
 	wxString				CurrentIso;
 	wxString				CurrentELF;
+	wxString				CurrentP2M; //TAS
 	CDVD_SourceType			CdvdSource;
 
 	// Memorycard options - first 2 are default slots, last 6 are multitap 1 and 2

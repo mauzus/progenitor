@@ -2902,6 +2902,18 @@
 					</File>
 				</Filter>
 			</Filter>
+			<Filter
+				Name="TAS"
+				>
+				<Filter
+					Name="gui"
+					>
+					<File
+						RelativePath="..\..\gui\Dialogs\MovieDialog.cpp"
+						>
+					</File>
+				</Filter>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>

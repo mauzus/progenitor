@@ -120,6 +120,7 @@ protected:
 	wxMenu&			m_menuSys;
 	wxMenu&			m_menuConfig;
 	wxMenu&			m_menuMisc;
+	wxMenu&			m_menuMovie; //TAS
 	wxMenu&			m_menuDebug;
 
 	wxMenu&			m_LoadStatesSubmenu;
@@ -202,6 +203,13 @@ protected:
 	void _DoBootCdvd();
 	bool _DoSelectIsoBrowser( wxString& dest );
 	bool _DoSelectELFBrowser();
+	bool _DoSelectP2MBrowser();
+
+	//TAS
+	void Menu_ShowRecoed_Movie(wxCommandEvent &event);
+	void Menu_ShowPlay_Movie(wxCommandEvent &event);
+	void Menu_Stopmovie_Click(wxCommandEvent &event);
+	//
 
 // ------------------------------------------------------------------------
 //     MainEmuFram Internal API for Populating Main Menu Contents
