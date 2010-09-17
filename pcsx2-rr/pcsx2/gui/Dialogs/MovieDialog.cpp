@@ -24,6 +24,10 @@
 
 #include <wx/mstream.h>
 #include <wx/hyperlink.h>
+#include <wx/stdpaths.h>
+#include <wx/file.h>
+#include <wx/dir.h>
+#include <wx/filepicker.h>
 
 using namespace pxSizerFlags;
 
@@ -32,10 +36,16 @@ using namespace pxSizerFlags;
 // --------------------------------------------------------------------------------------
 
 Dialogs::PlayMovieDialog::PlayMovieDialog( wxWindow* parent )
-	: wxDialogWithHelpers( )
+	: wxDialogWithHelpers(parent, AddAppName(_("RePlay Movie")), pxDialogFlags().Resize().MinWidth( 230 ) )
 {
+	m_filepicker = new wxFilePickerCtrl( this, wxID_ANY, wxEmptyString, L"Select a file" ,L"p2m.*",
+		wxDefaultPosition, wxSize(250,25), wxFLP_DEFAULT_STYLE ,wxDefaultValidator, L"filepickerctrl"
+	);
+	*this	+=	Label(_("&File:"));
+	*this	+=	m_filepicker;
 
 	int bestHeight = GetBestSize().GetHeight();
-	if( bestHeight < 400 ) bestHeight = 400;
+	if( bestHeight < 200 ) bestHeight = 200;
 	SetMinHeight( bestHeight );
+	AddOkCancel();
 }
