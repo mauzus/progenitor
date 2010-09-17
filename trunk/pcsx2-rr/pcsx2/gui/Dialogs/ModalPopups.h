@@ -163,8 +163,11 @@ namespace Dialogs
 	class PlayMovieDialog: public wxDialogWithHelpers
 	{
 	protected:
-		//wxStaticBitmap m_bitmap_logo;
-		//wxStaticBitmap m_bitmap_dualshock;
+		wxTextCtrl* m_filelocate;
+		wxButton* m_ok;
+		wxButton* m_cancel;
+		wxButton* m_browse;
+		wxFilePickerCtrl* m_filepicker;
 
 	public:
 		PlayMovieDialog( wxWindow* parent=NULL );
