@@ -36,16 +36,50 @@ using namespace pxSizerFlags;
 // --------------------------------------------------------------------------------------
 
 Dialogs::PlayMovieDialog::PlayMovieDialog( wxWindow* parent )
-	: wxDialogWithHelpers(parent, AddAppName(_("RePlay Movie")), pxDialogFlags().Resize().MinWidth( 230 ) )
+	: wxDialogWithHelpers(parent, AddAppName(_("RePlay Movie")) )
 {
-	m_filepicker = new wxFilePickerCtrl( this, wxID_ANY, wxEmptyString, L"Select a file" ,L"p2m.*",
-		wxDefaultPosition, wxSize(250,25), wxFLP_DEFAULT_STYLE ,wxDefaultValidator, L"filepickerctrl"
+	SetMinWidth( 480 );
+
+	wxStaticBoxSizer& groupSizer = *new wxStaticBoxSizer( wxVERTICAL, this, _("Option") );
+
+
+	struct CheckTextMessage
+	{
+		wxString label, tooltip;
+	};
+
+	const CheckTextMessage check_text[2] =
+	{
+		{
+			_("Start Paused"),
+			wxEmptyString
+		},
+		{
+			_("Read Only"),
+			wxEmptyString
+		}
+	};
+
+	for( int i=0; i<2; ++i )
+	{
+		groupSizer += (m_checkbox[i] = new pxCheckBox( this, check_text[i].label ));
+		m_checkbox[i]->SetToolTip( check_text[i].tooltip );
+	}
+
+	wxStaticBoxSizer& fileinfo	 = *new wxStaticBoxSizer( wxVERTICAL, this, _("FileInfo") );
+	fileinfo	+= Label(_("&Frame:"))| StdExpand();
+	fileinfo	+= Label(_("&ReRecordCount:"))| StdExpand();
+
+	wxBoxSizer& boxsizer	 = *new wxBoxSizer( wxHORIZONTAL );
+	boxsizer += groupSizer;
+	boxsizer += fileinfo;
+
+	m_filepicker = new wxFilePickerCtrl( this, wxID_ANY, wxEmptyString, L"Select a file" ,L"*.p2m",
+		wxDefaultPosition, wxDefaultSize, wxFLP_DEFAULT_STYLE ,wxDefaultValidator, L"filepickerctrl"
 	);
 	*this	+=	Label(_("&File:"));
-	*this	+=	m_filepicker;
+	*this	+=	m_filepicker | StdExpand();
+	*this	+=	boxsizer	| StdExpand();
 
-	int bestHeight = GetBestSize().GetHeight();
-	if( bestHeight < 200 ) bestHeight = 200;
-	SetMinHeight( bestHeight );
 	AddOkCancel();
 }
