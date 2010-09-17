@@ -168,6 +168,7 @@ namespace Dialogs
 		wxButton* m_cancel;
 		wxButton* m_browse;
 		wxFilePickerCtrl* m_filepicker;
+		pxCheckBox*			m_checkbox[2];
 
 	public:
 		PlayMovieDialog( wxWindow* parent=NULL );
